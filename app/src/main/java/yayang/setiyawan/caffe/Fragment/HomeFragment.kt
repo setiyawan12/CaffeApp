@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.rv_produk
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +16,7 @@ import yayang.setiyawan.caffe.Model.Produk
 import yayang.setiyawan.caffe.Model.ResponModel
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.app.ApiConfig
+
 
 class HomeFragment : Fragment() {
     lateinit var rv_Produk:RecyclerView
@@ -54,12 +53,16 @@ class HomeFragment : Fragment() {
     fun showProduk(){
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        rv_produk.adapter = AdapterProduk(requireActivity(),listProduk)
-        rv_produk.layoutManager = layoutManager
+        view?.rv_produk?.adapter = AdapterProduk(requireActivity(),listProduk)
+        view?.rv_produk?.layoutManager = layoutManager
     }
-
     fun init (view: View){
         rv_Produk = view.findViewById(R.id.rv_produk)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProduk()
     }
 }

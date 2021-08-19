@@ -31,7 +31,7 @@ class AdapterProduk(var activity: Activity, var data:ArrayList<Produk>):Recycler
         val image = data[position].image
         val harga = data[position].harga
         holder.tvNama.text = data[position].name
-        holder.tvHarga.text=Helper().gantiRupiah(harga)
+        holder.tvHarga.text=Helper().gantiRupiah(harga!!)
         Picasso.get()
             .load(image)
             .placeholder(R.drawable.product)
