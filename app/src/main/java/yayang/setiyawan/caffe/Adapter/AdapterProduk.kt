@@ -21,10 +21,10 @@ class AdapterProduk(var activity: Activity, var data:ArrayList<Produk>):Recycler
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
         val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
         val imgProduk = view.findViewById<ImageView>(R.id.img_produk)
-        val layout = view.findViewById<CardView>(R.id.layout)
+        val layout = view.findViewById<View>(R.id.layout)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_produk,parent, false)
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_produk1,parent, false)
         return Holder(view)
     }
     override fun onBindViewHolder(holder:Holder, position: Int) {

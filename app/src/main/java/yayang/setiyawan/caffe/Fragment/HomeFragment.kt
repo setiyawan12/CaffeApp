@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
                     showProduk()
                 }
             }
-
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
                 Toast.makeText(requireActivity(), "Tidbisa koneksi ke server", Toast.LENGTH_LONG).show()
             }

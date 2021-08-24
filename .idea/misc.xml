@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable-v24/detail_page_cart_button_bg.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable-v24/ic_arrow_forward_black_24dp.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable-v24/ic_cat_bg.xml" value="0.36574074074074076" />
+        <entry key="app/src/main/res/drawable-v24/rectangle_background.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/bg_btn_beli.xml" value="0.3509259259259259" />
         <entry key="app/src/main/res/drawable/bg_bulet.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/bg_penambahan.xml" value="0.21822916666666667" />
@@ -21,18 +22,20 @@
         <entry key="app/src/main/res/drawable/ic_short.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/font/nunito.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.2907608695652174" />
-        <entry key="app/src/main/res/layout/activity_fragment.xml" value="0.3625" />
+        <entry key="app/src/main/res/layout/activity_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1762917933130699" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.3283514492753623" />
         <entry key="app/src/main/res/layout/activity_scanner2.xml" value="0.3283514492753623" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.3351449275362319" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.1762917933130699" />
         <entry key="app/src/main/res/layout/fragment_akun.xml" value="0.3625" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3625" />
-        <entry key="app/src/main/res/layout/fragment_keranjang.xml" value="0.3625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3563218390804598" />
+        <entry key="app/src/main/res/layout/fragment_keranjang.xml" value="0.16" />
         <entry key="app/src/main/res/layout/item_keranjang.xml" value="0.3625" />
         <entry key="app/src/main/res/layout/item_produk.xml" value="0.3061594202898551" />
+        <entry key="app/src/main/res/layout/item_produk1.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/layout/toolbar_custom.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
       </map>

@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF9800</color>
+    <color name="colorPrimary">#001342</color>
+    <color name="colorKeranjang">#272670</color>
+
 
 </resources>
