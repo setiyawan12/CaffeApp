@@ -1,9 +1,11 @@
 package yayang.setiyawan.caffe.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
@@ -13,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail_produk.*
 import kotlinx.android.synthetic.main.toolbar_custom.*
+import yayang.setiyawan.caffe.Fragment.KeranjangFragment
 import yayang.setiyawan.caffe.Helper.Helper
 import yayang.setiyawan.caffe.Model.Produk
 import yayang.setiyawan.caffe.R
@@ -41,6 +44,11 @@ class DetailProdukActivity : AppCompatActivity() {
                 update(data)
             }
         }
+        btn_toKeranjang.setOnClickListener {
+            val intent = Intent(this,KeranjangFragment::class.java)
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+            onBackPressed()
+        }
     }
 
     private fun getInfo(){
@@ -56,7 +64,7 @@ class DetailProdukActivity : AppCompatActivity() {
             .error(R.drawable.product)
             .resize(400,400)
             .into(image)
-
+        Helper().setToolbar(this,toolbar,produk.name.toString())
     }
     private fun insert(){
         CompositeDisposable().add(Observable.fromCallable { myDb.daoKeranjang().insert(produk) }
@@ -91,4 +99,11 @@ class DetailProdukActivity : AppCompatActivity() {
             div_angka.visibility = View.GONE
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+
+    }
+
 }

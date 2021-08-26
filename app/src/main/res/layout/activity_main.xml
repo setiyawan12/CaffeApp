@@ -20,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutHome"
         app:menu="@menu/bottom_nav_menu" />
-
     <FrameLayout
         android:id="@+id/frameLayoutHome"
         android:layout_width="0dp"

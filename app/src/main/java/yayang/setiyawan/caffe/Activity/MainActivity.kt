@@ -12,7 +12,7 @@ import yayang.setiyawan.caffe.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment)
+        setContentView(R.layout.activity_main)
         setFragment(HomeFragment())
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
