@@ -14,20 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Caffe">
         <activity
-            android:name=".MainActivity"
+            android:name=".TesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.MainActivity"
             android:exported="true" />
         <activity
             android:name=".Activity.DetailProdukActivity"
             android:exported="true" />
         <activity
-            android:name=".ScannerActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Fragment.FragmentActivity"
+            android:name=".Activity.ScannerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

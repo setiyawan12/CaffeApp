@@ -1,4 +1,4 @@
-package yayang.setiyawan.caffe
+package yayang.setiyawan.caffe.Activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,8 +14,10 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import kotlinx.android.synthetic.main.activity_scanner.*
-import yayang.setiyawan.caffe.Helper.Constant
+import org.json.JSONException
+import org.json.JSONObject
 import yayang.setiyawan.caffe.Helper.SharedPref
+import yayang.setiyawan.caffe.R
 
 class ScannerActivity : AppCompatActivity() {
     lateinit var sharedPref: SharedPref
@@ -29,35 +31,36 @@ class ScannerActivity : AppCompatActivity() {
     }
     private fun codeScanner() {
         codeScanner = CodeScanner(this, scn)
-
         codeScanner.apply {
             camera = CodeScanner.CAMERA_BACK
             formats = CodeScanner.ALL_FORMATS
-
             autoFocusMode = AutoFocusMode.SAFE
             scanMode = ScanMode.CONTINUOUS
             isAutoFocusEnabled = true
             isFlashEnabled = false
-
             decodeCallback = DecodeCallback {
                 runOnUiThread {
-                    tv_text.text = it.text
-                    sharedPref.put(Constant.PREF_MEJA, tv_text.text.toString())
+                    if (it.text == null){
+                        Toast.makeText(this@ScannerActivity,"data kosong",Toast.LENGTH_SHORT).show()
+                    }else{
+                        try {
+                            val obj = JSONObject(it.text)
+                            Toast.makeText(this@ScannerActivity,obj.getString("meja"),Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@ScannerActivity, MainActivity::class.java))
+                        }catch (e: JSONException){
+                            e.printStackTrace()
+                        }
+                    }
                 }
-                startActivity(Intent(this@ScannerActivity,MainActivity::class.java))
-
             }
-
             errorCallback = ErrorCallback {
                 runOnUiThread {
                     Log.e("Main", "codeScanner: ${it.message}")
                 }
             }
-
             scn.setOnClickListener {
                 codeScanner.startPreview()
             }
-
         }
     }
     override fun onResume() {
@@ -76,6 +79,7 @@ class ScannerActivity : AppCompatActivity() {
             makeRequest()
         }
     }
+
 
     private fun makeRequest() {
         ActivityCompat.requestPermissions(
@@ -102,7 +106,6 @@ class ScannerActivity : AppCompatActivity() {
             }
         }
     }
-
     companion object {
         private const val CAMERA_REQ = 101
     }

@@ -1,12 +1,15 @@
-package yayang.setiyawan.caffe.Fragment
+package yayang.setiyawan.caffe.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_fragment.*
+import kotlinx.android.synthetic.main.activity_main.bottom_navigation
+import yayang.setiyawan.caffe.Fragment.AkunFragment
+import yayang.setiyawan.caffe.Fragment.HomeFragment
+import yayang.setiyawan.caffe.Fragment.KeranjangFragment
 import yayang.setiyawan.caffe.R
 
-class FragmentActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment)
@@ -25,7 +28,6 @@ class FragmentActivity : AppCompatActivity() {
             }
             true
         }
-
     }
     private fun setFragment(fragment: Fragment){
         supportActionBar
