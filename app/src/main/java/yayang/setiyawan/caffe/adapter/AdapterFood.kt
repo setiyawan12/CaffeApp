@@ -18,13 +18,12 @@ import yayang.setiyawan.caffe.model.Produk
 class AdapterFood (var activity: Activity,var data:List<Produk>):RecyclerView.Adapter<AdapterFood.Holder>(){
     class Holder (view: View):RecyclerView.ViewHolder(view){
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
-        val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
         val imgProduk = view.findViewById<ImageView>(R.id.img_produk)
         val layout = view.findViewById<View>(R.id.layout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_produk1,parent,false)
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
         return Holder(view)
     }
 
@@ -32,7 +31,6 @@ class AdapterFood (var activity: Activity,var data:List<Produk>):RecyclerView.Ad
         val image = data[position].image
         val harga = data[position].harga
         holder.tvNama.text = data[position].name
-        holder.tvHarga.text= Helper().gantiRupiah(harga!!)
         Picasso.get()
             .load(image)
             .placeholder(R.drawable.product)

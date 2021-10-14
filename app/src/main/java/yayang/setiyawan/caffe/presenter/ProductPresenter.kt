@@ -1,8 +1,10 @@
 package yayang.setiyawan.caffe.presenter
 
+import com.google.android.gms.common.api.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import yayang.setiyawan.caffe.activity.FoodActivity
 import yayang.setiyawan.caffe.contract.ProductContract
 import yayang.setiyawan.caffe.model.ListResponse
 import yayang.setiyawan.caffe.model.Produk
@@ -36,16 +38,16 @@ class ProductPresenter(v:ProductContract.View?):ProductContract.Presenter {
         })
     }
 
-    override fun getProductFood() {
-        val webServices = ApiConfig.APIService()
-        val request = webServices.getProdukFood()
+    override fun getAllFood() {
+        val webservices = ApiConfig.APIService()
+        val request = webservices.getProdukFood()
         request.enqueue(object : Callback<ListResponse<Produk>>{
             override fun onResponse(
                 call: Call<ListResponse<Produk>>,
                 response: Response<ListResponse<Produk>>
             ) {
                 if (response.isSuccessful){
-                    val body = response.body()
+                    val  body = response.body()
                     if (body != null){
                         if (body.data.isNotEmpty()){
                             view?.attachToRecyclerFood(body.data)
@@ -62,16 +64,17 @@ class ProductPresenter(v:ProductContract.View?):ProductContract.Presenter {
 
         })
     }
-    override fun getProductSnack() {
-        val webServices = ApiConfig.APIService()
-        val request = webServices.getProdukSnack()
+
+    override fun getAllSnack() {
+        val webservices = ApiConfig.APIService()
+        val request = webservices.getProdukSnack()
         request.enqueue(object : Callback<ListResponse<Produk>>{
             override fun onResponse(
                 call: Call<ListResponse<Produk>>,
                 response: Response<ListResponse<Produk>>
             ) {
                 if (response.isSuccessful){
-                    val body = response.body()
+                    val  body = response.body()
                     if (body != null){
                         if (body.data.isNotEmpty()){
                             view?.attachToRecyclerSnack(body.data)
@@ -82,9 +85,11 @@ class ProductPresenter(v:ProductContract.View?):ProductContract.Presenter {
                     }
                 }
             }
+
             override fun onFailure(call: Call<ListResponse<Produk>>, t: Throwable) {
                 view?.toast("terjadi kesalahan server")
             }
+
         })
     }
 
