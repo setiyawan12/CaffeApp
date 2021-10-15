@@ -1,4 +1,4 @@
-package yayang.setiyawan.caffe.activity
+package yayang.setiyawan.caffe.activity.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_food.*
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.adapter.AdapterFood
-import yayang.setiyawan.caffe.contract.ProductContract
 import yayang.setiyawan.caffe.contract.ProductFoodContract
 import yayang.setiyawan.caffe.model.Produk
 import yayang.setiyawan.caffe.presenter.ProductFoodPresenter
-import yayang.setiyawan.caffe.presenter.ProductPresenter
 
 class FoodActivity : AppCompatActivity(),ProductFoodContract.View {
     private lateinit var presenter: ProductFoodContract.Presenter

@@ -14,13 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Caffe">
         <activity
-            android:name=".activity.SnackActivity"
+            android:name=".activity.menu.CoffeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.menu.DrinkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.menu.SnackActivity"
             android:exported="true" />
         <activity
             android:name=".UnitTesActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.FoodActivity"
+            android:name=".activity.menu.FoodActivity"
             android:exported="true" />
         <activity
             android:name=".TesActivity"

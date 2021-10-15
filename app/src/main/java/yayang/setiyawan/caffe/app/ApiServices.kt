@@ -12,4 +12,8 @@ interface ApiServices {
     fun getProdukFood():Call<ListResponse<Produk>>
     @GET("api/produk/3")
     fun getProdukSnack():Call<ListResponse<Produk>>
+    @GET("api/produk/2")
+    fun getProdukDrink():Call<ListResponse<Produk>>
+    @GET("api/produk/4")
+    fun getProdukCoffe():Call<ListResponse<Produk>>
 }

@@ -1,10 +1,8 @@
 package yayang.setiyawan.caffe.presenter
 
-import com.google.android.gms.common.api.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import yayang.setiyawan.caffe.activity.FoodActivity
 import yayang.setiyawan.caffe.contract.ProductContract
 import yayang.setiyawan.caffe.model.ListResponse
 import yayang.setiyawan.caffe.model.Produk

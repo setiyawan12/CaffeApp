@@ -24,7 +24,9 @@
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/font/nunito.xml" value="0.23229166666666667" />
+        <entry key="app/src/main/res/layout/activity_coffe.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_drink.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_food.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />

@@ -15,8 +15,10 @@ import yayang.setiyawan.caffe.contract.ProductContract
 import yayang.setiyawan.caffe.model.Produk
 import yayang.setiyawan.caffe.presenter.ProductPresenter
 import yayang.setiyawan.caffe.R
-import yayang.setiyawan.caffe.activity.FoodActivity
-import yayang.setiyawan.caffe.activity.SnackActivity
+import yayang.setiyawan.caffe.activity.menu.CoffeActivity
+import yayang.setiyawan.caffe.activity.menu.DrinkActivity
+import yayang.setiyawan.caffe.activity.menu.FoodActivity
+import yayang.setiyawan.caffe.activity.menu.SnackActivity
 
 class HomeFragment : Fragment(),ProductContract.View {
     private lateinit var presenter: ProductContract.Presenter
@@ -83,11 +85,19 @@ class HomeFragment : Fragment(),ProductContract.View {
     fun init (view: View){
         val btn_food = view.findViewById<ImageView>(R.id.food)
         btn_food.setOnClickListener {
-            startActivity(Intent(activity,FoodActivity::class.java))
+            startActivity(Intent(activity, FoodActivity::class.java))
         }
         val btn_snack = view.findViewById<ImageView>(R.id.img_snack)
         btn_snack.setOnClickListener {
-            startActivity(Intent(activity,SnackActivity::class.java))
+            startActivity(Intent(activity, SnackActivity::class.java))
+        }
+        val btn_coffe = view.findViewById<ImageView>(R.id.img_coffe)
+        btn_coffe.setOnClickListener {
+            startActivity(Intent(activity,CoffeActivity::class.java))
+        }
+        val btn_drink = view.findViewById<ImageView>(R.id.img_drink)
+        btn_drink.setOnClickListener {
+            startActivity(Intent(activity,DrinkActivity::class.java))
         }
     }
     override fun onResume() {
