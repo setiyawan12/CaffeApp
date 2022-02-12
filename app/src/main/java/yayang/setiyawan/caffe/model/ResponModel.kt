@@ -1,6 +1,9 @@
 package yayang.setiyawan.caffe.model
 
 class ResponModel {
-    var produks:ArrayList<Produk> = ArrayList()
     var success = 0
+    var data = User()
+    var transaksi = Transaksi()
+    var transaksis: ArrayList<Transaksi> = ArrayList()
+
 }

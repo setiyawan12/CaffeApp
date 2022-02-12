@@ -8,43 +8,70 @@
         <entry key="app/src/main/res/drawable-v24/detail_page_bg.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable-v24/detail_page_cart_button_bg.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable-v24/ic_arrow_forward_black_24dp.xml" value="0.25555555555555554" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_business_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_chevron_right_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_edit_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_favorite_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_help_outline_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_history_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_map_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_notifications_active_24.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_shopping_cart_24_orange.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_cat_bg.xml" value="0.36574074074074076" />
+        <entry key="app/src/main/res/drawable-v24/ic_lock_oren_24dp.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/drawable-v24/rectangle_background.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/drawable/background_akun.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/drawable/background_menu.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/drawable/bg_btn_beli.xml" value="0.3509259259259259" />
         <entry key="app/src/main/res/drawable/bg_bulet.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/bg_penambahan.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/drawable/custom_card.xml" value="0.3640625" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.3640625" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.362962962962963" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/drawable/ic_pass.xml" value="0.3640625" />
         <entry key="app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/ic_short.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/drawable/ic_user.xml" value="0.3640625" />
+        <entry key="app/src/main/res/drawable/item_background.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/font/nunito.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/layout/activity_coffe.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/layout/activity_customer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_detail_produk.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_drink.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/layout/activity_detail_transaksi.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_drink.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_food.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_fragment.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_get_user.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.3283514492753623" />
+        <entry key="app/src/main/res/layout/activity_pembayaran.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_riwayat.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_scanner2.xml" value="0.3283514492753623" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.3351449275362319" />
         <entry key="app/src/main/res/layout/activity_snack.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/layout/activity_tes.xml" value="0.34739583333333335" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.1762917933130699" />
+        <entry key="app/src/main/res/layout/activity_test_login.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/activity_unit_tes.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_zking.xml" value="0.1762917933130699" />
-        <entry key="app/src/main/res/layout/fragment_akun.xml" value="0.3625" />
+        <entry key="app/src/main/res/layout/fragment_akun.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_keranjang.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_keranjang.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_history.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/item_keranjang.xml" value="0.3625" />
         <entry key="app/src/main/res/layout/item_produk.xml" value="0.3061594202898551" />
         <entry key="app/src/main/res/layout/item_produk1.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_produk_transaksi.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/toolbar_custom.xml" value="0.20208333333333334" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
       </map>

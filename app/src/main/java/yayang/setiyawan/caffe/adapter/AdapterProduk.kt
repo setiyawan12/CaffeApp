@@ -19,6 +19,7 @@ class AdapterProduk(var activity: Activity, var data:List<Produk>):RecyclerView.
     class Holder(view:View):RecyclerView.ViewHolder(view){
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
         val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
+        val tvStock = view.findViewById<TextView>(R.id.tv_stock)
         val imgProduk = view.findViewById<ImageView>(R.id.img_produk)
         val layout = view.findViewById<View>(R.id.layout)
     }
@@ -29,6 +30,7 @@ class AdapterProduk(var activity: Activity, var data:List<Produk>):RecyclerView.
     override fun onBindViewHolder(holder:Holder, position: Int) {
         val image = data[position].image
         val harga = data[position].harga
+        holder.tvStock.text = data[position].stock.toString()
         holder.tvNama.text = data[position].name
         holder.tvHarga.text=Helper().gantiRupiah(harga!!)
         Picasso.get()

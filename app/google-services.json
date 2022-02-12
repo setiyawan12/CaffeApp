@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "660007901829",
+    "firebase_url": "https://fir-fa2a8.firebaseio.com",
+    "project_id": "fir-fa2a8",
+    "storage_bucket": "fir-fa2a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660007901829:android:a444a26ad358aadd78a7ec",
+        "android_client_info": {
+          "package_name": "yayang.setiyawan.caffe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660007901829-q0n349pb0r1o02ctmg5dgsjg6neofm0a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "yayang.setiyawan.caffe",
+            "certificate_hash": "07e429deeea46ec76d39674167f52c9e0ff07a5b"
+          }
+        },
+        {
+          "client_id": "660007901829-tja4d8ibu00h0619thtjvr5cgravf2h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASyhHHGTWtSeCne_culNH0vVgEHqCDANg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660007901829-tja4d8ibu00h0619thtjvr5cgravf2h6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

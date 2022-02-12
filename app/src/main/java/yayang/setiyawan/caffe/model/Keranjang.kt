@@ -14,4 +14,5 @@ class Keranjang {
     var harga:Int=0
     lateinit var image:String
     var jumlah: Int = 0
+    var stock = 0
 }

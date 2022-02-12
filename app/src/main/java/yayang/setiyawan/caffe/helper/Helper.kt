@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Helper {
@@ -23,5 +24,11 @@ class Helper {
         activity.supportActionBar!!.title = title
         activity.supportActionBar!!.setDisplayShowHomeEnabled(false)
         activity.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+    }
+    fun convertTanggal(tgl: String, formatBaru: String, fromatLama: String = "yyyy-MM-dd kk:mm:ss") :String{
+        val dateFormat = SimpleDateFormat(fromatLama)
+        val confert = dateFormat.parse(tgl)
+        dateFormat.applyPattern(formatBaru)
+        return dateFormat.format(confert)
     }
 }

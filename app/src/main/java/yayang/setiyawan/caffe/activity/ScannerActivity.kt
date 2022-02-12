@@ -45,6 +45,7 @@ class ScannerActivity : AppCompatActivity() {
                     }else{
                         try {
                             val obj = JSONObject(it.text)
+                            sharedPref.setString(sharedPref.meja,obj.getString("meja"))
                             Toast.makeText(this@ScannerActivity,obj.getString("meja"),Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@ScannerActivity, MainActivity::class.java))
                         }catch (e: JSONException){

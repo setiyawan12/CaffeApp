@@ -14,6 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Caffe">
         <activity
+            android:name=".activity.DetailTransaksiActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.RiwayatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.ScannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.GetUserActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.PembayaranActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.TestLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.menu.CoffeActivity"
             android:exported="true" />
         <activity
@@ -32,7 +53,7 @@
             android:name=".TesActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ScannerActivity"
+            android:name=".activity.CustomerActivity"
             android:exported="true" />
         <activity
             android:name=".activity.DetailProdukActivity"

@@ -67,15 +67,13 @@ class HomeFragment : Fragment(),ProductContract.View {
 
     override fun emptydata(status: Boolean) {
         if (status){
-            view?.tv_empty?.visibility = View.VISIBLE
-            view?.tv_snack?.visibility = View.GONE
-            view?.tv_menu?.visibility = View.GONE
-            view?.tv_food?.visibility = View.GONE
-        }else{
-            view?.tv_empty?.visibility = View.GONE
             view?.tv_snack?.visibility = View.VISIBLE
             view?.tv_menu?.visibility = View.VISIBLE
             view?.tv_food?.visibility = View.VISIBLE
+        }else{
+            view?.tv_snack?.visibility = View.GONE
+            view?.tv_menu?.visibility = View.GONE
+            view?.tv_food?.visibility = View.GONE
         }
     }
 

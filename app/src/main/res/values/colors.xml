@@ -11,5 +11,7 @@
     <color name="colorPrimary">#001342</color>
     <color name="colorKeranjang">#272670</color>
 
-
+    <color name="menungu">#FF9800</color>
+    <color name="selesai">#4CAF50</color>
+    <color name="batal">#E91E1E</color>
 </resources>

@@ -6,9 +6,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_snack.*
+import kotlinx.android.synthetic.main.toolbar.*
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.adapter.AdapterFood
 import yayang.setiyawan.caffe.contract.ProductSnackContract
+import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.model.Produk
 import yayang.setiyawan.caffe.presenter.ProductSnackPresenter
 
@@ -18,6 +20,7 @@ class SnackActivity : AppCompatActivity(),ProductSnackContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_snack)
+        Helper().setToolbar(this, toolbar, "Snack")
         presenter = ProductSnackPresenter(this)
         presenter?.getProdukSnack()
     }
@@ -41,5 +44,9 @@ class SnackActivity : AppCompatActivity(),ProductSnackContract.View {
     }
     override fun toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

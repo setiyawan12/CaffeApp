@@ -21,4 +21,5 @@ class Produk : Serializable {
     var discount = 0
     var jumlah = 1
     var selected = true
+    var stock = 1
 }

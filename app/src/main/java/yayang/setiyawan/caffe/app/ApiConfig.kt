@@ -26,8 +26,8 @@ class ApiConfig {
     }
     class Constant{
         companion object{
-//            const val BASE_URL = "https://3106-182-253-131-71.ngrok.io/"
-            const val BASE_URL = "https://cafe-server-setiyawan.herokuapp.com/"
+            const val BASE_URL = "https://e28c-36-68-54-208.ngrok.io/"
+//            const val BASE_URL = "https://cafe-server-setiyawan.herokuapp.com/"
         }
     }
 }
