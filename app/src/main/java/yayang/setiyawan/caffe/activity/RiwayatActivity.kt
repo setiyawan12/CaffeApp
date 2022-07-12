@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import yayang.setiyawan.caffe.R
+import yayang.setiyawan.caffe.activity.history.detail.DetailTransaksiActivity
 import yayang.setiyawan.caffe.adapter.AdapterHistory
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.helper.SharedPref
@@ -28,7 +29,6 @@ class RiwayatActivity : AppCompatActivity() {
     }
     fun getRiwayat(){
         val id =s.getString(s.id.toString())
-
         UnitApiConfig.instanceRetrofit.getRiwayat(id).enqueue(object : Callback<ResponModel>{
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val res = response.body()
@@ -36,7 +36,6 @@ class RiwayatActivity : AppCompatActivity() {
                     displayRiwayat(res.transaksis)
                 }
             }
-
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
             }
 
@@ -49,14 +48,12 @@ class RiwayatActivity : AppCompatActivity() {
         rv_riwayat.adapter = AdapterHistory(transaksis, object : AdapterHistory.Listeners{
             override fun onClicked(data: Transaksi) {
                 val json = Gson().toJson(data,Transaksi::class.java)
-                val intent = Intent(this@RiwayatActivity,DetailTransaksiActivity::class.java)
+                val intent = Intent(this@RiwayatActivity, DetailTransaksiActivity::class.java)
                 intent.putExtra("transaksi",json)
                 startActivity(intent)
             }
-
         })
         rv_riwayat.layoutManager = layoutManager
-
     }
     override fun onResume() {
         getRiwayat()

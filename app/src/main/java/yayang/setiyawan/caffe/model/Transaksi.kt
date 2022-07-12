@@ -17,8 +17,10 @@ class Transaksi {
     var kode_trx = ""
     var kode_unik = 0
     var status = ""
+    var meja =""
     var expired_at = ""
     var updated_at = ""
     var created_at = ""
+    var order_id = ""
     val details = ArrayList<DetailTransaksi>()
 }

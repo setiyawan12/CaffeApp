@@ -1,15 +1,23 @@
 package yayang.setiyawan.caffe.fragment
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.item_dialog.*
 import yayang.setiyawan.caffe.adapter.AdapterProduk
 import yayang.setiyawan.caffe.contract.ProductContract
 import yayang.setiyawan.caffe.model.Produk
@@ -29,11 +37,12 @@ class HomeFragment : Fragment(),ProductContract.View {
     ): View?{
         val view :View = inflater.inflate(R.layout.fragment_home, container, false)
         init(view)
-    presenter = ProductPresenter(this)
-    presenter?.getAllProduct()
+        presenter = ProductPresenter(this)
+        presenter?.getAllProduct()
         presenter?.getAllFood()
         presenter?.getAllSnack()
-    return  view
+        checkConnection()
+        return  view
     }
     override fun attachToRecycler(listProduk: List<Produk>) {
         view?.rv_produk?.apply {
@@ -67,13 +76,13 @@ class HomeFragment : Fragment(),ProductContract.View {
 
     override fun emptydata(status: Boolean) {
         if (status){
-            view?.tv_snack?.visibility = View.VISIBLE
-            view?.tv_menu?.visibility = View.VISIBLE
-            view?.tv_food?.visibility = View.VISIBLE
+//            view?.tv_snack?.visibility = View.VISIBLE
+//            view?.tv_menu?.visibility = View.VISIBLE
+//            view?.tv_food?.visibility = View.VISIBLE
         }else{
-            view?.tv_snack?.visibility = View.GONE
-            view?.tv_menu?.visibility = View.GONE
-            view?.tv_food?.visibility = View.GONE
+//            view?.tv_snack?.visibility = View.GONE
+//            view?.tv_menu?.visibility = View.GONE
+//            view?.tv_food?.visibility = View.GONE
         }
     }
 
@@ -98,10 +107,28 @@ class HomeFragment : Fragment(),ProductContract.View {
             startActivity(Intent(activity,DrinkActivity::class.java))
         }
     }
+    private fun checkConnection(){
+        val manager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = manager.getNetworkCapabilities(manager.activeNetwork)
+        if (null != networkInfo){
+            print(true)
+        }else{
+            val dialog = Dialog(requireActivity())
+            dialog.setContentView(R.layout.item_dialog)
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.coba.setOnClickListener {
+                recreate(requireActivity())
+            }
+            dialog.show()
+        }
+    }
     override fun onResume() {
         super.onResume()
         presenter?.getAllProduct()
         presenter?.getAllFood()
         presenter?.getAllSnack()
+        checkConnection()
     }
 }

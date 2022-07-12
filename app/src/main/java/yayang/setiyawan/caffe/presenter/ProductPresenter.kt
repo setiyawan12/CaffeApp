@@ -83,11 +83,9 @@ class ProductPresenter(v:ProductContract.View?):ProductContract.Presenter {
                     }
                 }
             }
-
             override fun onFailure(call: Call<ListResponse<Produk>>, t: Throwable) {
                 view?.toast("terjadi kesalahan server")
             }
-
         })
     }
 

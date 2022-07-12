@@ -54,9 +54,7 @@ class AdapterKeranjang (var activity: Activity, var data: ArrayList<Produk>, var
             produk.selected = isChecked
             update(produk)
         }
-
         val image = data[position].image
-        Log.d("TOLDEM","HASIL${image}")
         Picasso.get()
             .load(image)
             .placeholder(R.drawable.product)
@@ -65,6 +63,7 @@ class AdapterKeranjang (var activity: Activity, var data: ArrayList<Produk>, var
 
 
         holder.btnTambah.setOnClickListener {
+            if (jumlah < produk.stock)
             jumlah++
             produk.jumlah = jumlah
             update(produk)

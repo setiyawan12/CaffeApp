@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import yayang.setiyawan.caffe.unit.Config
 import java.util.concurrent.TimeUnit
 
 class ApiConfig {
@@ -16,7 +17,7 @@ class ApiConfig {
         fun APIService(): ApiServices = getClient().create(ApiServices::class.java)
         private fun getClient(): Retrofit {
             return if (retrofit == null) {
-                retrofit = Retrofit.Builder().baseUrl(Constant.BASE_URL).client(okHttpClient)
+                retrofit = Retrofit.Builder().baseUrl(Config.baseUrl).client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create()).build()
                 retrofit!!
             } else {

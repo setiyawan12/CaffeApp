@@ -3,18 +3,10 @@ package yayang.setiyawan.caffe.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.Gson
-import com.midtrans.sdk.corekit.core.MidtransSDK
-import com.midtrans.sdk.corekit.core.TransactionRequest
-import com.midtrans.sdk.corekit.core.themes.CustomColorTheme
-import com.midtrans.sdk.corekit.models.BillingAddress
-import com.midtrans.sdk.corekit.models.CustomerDetails
-import com.midtrans.sdk.corekit.models.ShippingAddress
-import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,7 +14,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail_produk.*
 import kotlinx.android.synthetic.main.toolbar_custom.*
-import yayang.setiyawan.caffe.fragment.KeranjangFragment
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.model.Produk
 import yayang.setiyawan.caffe.R
@@ -40,33 +31,6 @@ class DetailProdukActivity : AppCompatActivity() {
         getInfo()
         checkKeranjang()
         mainButton()
-        SdkUIFlowBuilder.init()
-            .setClientKey("SB-Mid-client-PBi0krZkXxiUQLH7")
-            .setContext(this)
-            .setTransactionFinishedCallback {
-                println("TRANSAKSI RESPONSE"+it)
-            }
-            .setMerchantBaseUrl("https://cafe-server-setiyawan.herokuapp.com/api/")
-            .enableLog(true)
-            .setColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
-            .setLanguage("id")
-            .buildSDK()
-
-        payment.setOnClickListener {
-            val data = intent.getStringExtra("extra")
-            produk = Gson().fromJson<Produk>(data,Produk::class.java)
-            val namaPoduk = produk.name
-            val deskripsi = produk.deskripsi
-            val harga = produk.harga
-            val transactionRequest = TransactionRequest("setiyawan"+System.currentTimeMillis().toShort()+"",harga!!.toDouble())
-            val detail = com.midtrans.sdk.corekit.models.ItemDetails("caffe",harga.toDouble(),1.toInt(),namaPoduk)
-            val itemDetails = ArrayList<com.midtrans.sdk.corekit.models.ItemDetails>()
-            itemDetails.add(detail)
-            uiKitDetails(transactionRequest)
-            transactionRequest.itemDetails = itemDetails
-            MidtransSDK.getInstance().transactionRequest = transactionRequest
-            MidtransSDK.getInstance().startPaymentUiFlow(this)
-        }
     }
 
     fun mainButton(){
@@ -80,7 +44,7 @@ class DetailProdukActivity : AppCompatActivity() {
             }
         }
         btn_toKeranjang.setOnClickListener {
-            val intent = Intent(this,KeranjangFragment::class.java)
+            val intent = Intent("event:keranjang")
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
             onBackPressed()
         }
@@ -107,10 +71,9 @@ class DetailProdukActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 checkKeranjang()
-                Log.d("respons", "data inserted")
                 SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Keranjang")
-                    .setContentText("Di Tambah Ke Keranjang")
+                    .setContentText("Disimpan Ke Keranjang")
                     .show()
             }
         )
@@ -121,8 +84,10 @@ class DetailProdukActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 checkKeranjang()
-                Log.d("respons", "data inserted")
-//                    Toast.makeText(this, "Berhasil menambah kekeranjang", Toast.LENGTH_SHORT).show(
+                SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Keranjang")
+                    .setContentText("Disimpan Ke keranjang")
+                    .show()
             })
     }
     private fun checkKeranjang() {
@@ -138,34 +103,5 @@ class DetailProdukActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
-
-    }
-    private fun uiKitDetails(transactionRequest: TransactionRequest){
-        val customerDetails = CustomerDetails()
-        customerDetails.customerIdentifier="yayang setiyawan"
-        customerDetails.firstName="yayang"
-        customerDetails.lastName="setiyawan"
-        customerDetails.phone="09876543222"
-        customerDetails.email="test@gmail.com"
-        val shippingAddress = ShippingAddress()
-        shippingAddress.firstName="yayang"
-        shippingAddress.lastName="setiyawan"
-        shippingAddress.phone="098765432"
-        shippingAddress.address="mindaka"
-        shippingAddress.city="Tegal"
-        shippingAddress.postalCode="12345"
-        shippingAddress.countryCode="IDN"
-        customerDetails.shippingAddress = shippingAddress
-        val billingAddress = BillingAddress()
-        billingAddress.firstName="yayang"
-        billingAddress.lastName="setiyawan"
-        billingAddress.phone="567890773733"
-        billingAddress.address="Mindaka"
-        billingAddress.city="tegal"
-        billingAddress.postalCode="123456"
-        billingAddress.countryCode="IDN"
-
-        customerDetails.billingAddress = billingAddress
-        transactionRequest.customerDetails = customerDetails
     }
 }

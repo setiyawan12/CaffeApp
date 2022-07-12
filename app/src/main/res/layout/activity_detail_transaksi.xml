@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background_akun"
-    tools:context=".activity.DetailTransaksiActivity">
+    tools:context=".activity.history.detail.DetailTransaksiActivity">
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
@@ -53,46 +53,6 @@
                     android:layout_marginTop="5dp"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_produk_transaksi" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    app:cardCornerRadius="3dp"
-                    app:cardBackgroundColor="@color/float_transparent"
-                    app:cardElevation="1dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Informasi Pengiriman"
-                            android:textColor="@color/colorPrimary" />
-
-                        <TextView
-                            android:id="@+id/tv_penerima"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Tisto - 081234566790"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/tv_alamat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Jalan kenangan nomor 5 Lamongan indonesia"
-                            android:textSize="12dp" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

@@ -4,11 +4,10 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="2dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="15dp"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="3dp"
-    app:cardBackgroundColor="@color/float_transparent"
+    app:cardCornerRadius="4dp"
     app:cardElevation="1dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +20,8 @@
             android:orientation="horizontal">
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/img_produk"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:scaleType="fitCenter"
                 app:riv_corner_radius="30dip"
@@ -41,22 +40,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="marquee"
-                    android:lines="2"
-                    android:maxLines="3"
+                    android:lines="1"
+                    android:maxLines="2"
                     android:text="Nama Produk"
                     android:textColor="@color/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/tv_berat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="1kg"
-                    android:textSize="12dp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="1dp">
+
                     <TextView
                         android:id="@+id/tv_harga"
                         android:layout_width="wrap_content"
@@ -74,16 +66,21 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#E3E3E3" />
         <TextView
             android:id="@+id/tv_totalHarga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:gravity="right"
             android:text="Rp.10.000"
             android:textColor="@color/colorPrimary"
-            android:textSize="16dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

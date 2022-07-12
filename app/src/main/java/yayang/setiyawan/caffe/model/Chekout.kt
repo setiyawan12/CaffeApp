@@ -6,6 +6,8 @@ class Chekout {
     lateinit var total_harga :String
     lateinit var name :String
     lateinit var meja:String
+    lateinit var order_id:String
+
 
     var produks = ArrayList<Item>()
 

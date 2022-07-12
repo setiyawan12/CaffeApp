@@ -1,5 +1,6 @@
 package yayang.setiyawan.caffe.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -56,6 +58,7 @@ class KeranjangFragment : Fragment() {
             override fun onDelete(position: Int) {
                 listProduk.removeAt(position)
                 adapter.notifyDataSetChanged()
+//                with(adapter){notifyDataSetChanged()}
                 hitungTotal()
             }
         })
@@ -105,6 +108,7 @@ class KeranjangFragment : Fragment() {
                 if (p.selected) listDelete.add(p)
             }
             delete(listDelete)
+            tvTotal.text = "Rp0,00"
         }
         cbAll.setOnClickListener {
             for (i in listProduk.indices){
@@ -113,6 +117,8 @@ class KeranjangFragment : Fragment() {
                 listProduk[i] = produk
             }
             adapter.notifyDataSetChanged()
+
+//            with(adapter){notifyDataSetChanged()}
         }
     }
     private fun delete(data: ArrayList<Produk>) {
@@ -123,6 +129,7 @@ class KeranjangFragment : Fragment() {
                 listProduk.clear()
                 listProduk.addAll(myDb.daoKeranjang().getAll() as ArrayList)
                 adapter.notifyDataSetChanged()
+//                with(adapter){notifyDataSetChanged()}
             })
     }
 
@@ -139,8 +146,8 @@ class KeranjangFragment : Fragment() {
         cbAll = view.findViewById(R.id.cb_all)
     }
     override fun onResume() {
+        super.onResume()
         displayProduk()
         hitungTotal()
-        super.onResume()
     }
 }

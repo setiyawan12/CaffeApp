@@ -10,8 +10,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import yayang.setiyawan.caffe.R
+import yayang.setiyawan.caffe.activity.CustomerActivity
+import yayang.setiyawan.caffe.activity.MainActivity
 import yayang.setiyawan.caffe.activity.RiwayatActivity
 import yayang.setiyawan.caffe.activity.TestLoginActivity
+import yayang.setiyawan.caffe.activity.history.HistoryActivity
 import yayang.setiyawan.caffe.helper.SharedPref
 
 class AkunFragment : Fragment(){
@@ -49,12 +52,17 @@ class AkunFragment : Fragment(){
     private fun mainButton(){
         btnLogout.setOnClickListener {
             s.setStatusLogin(false)
-            val intent = Intent(activity, TestLoginActivity::class.java)
+            s.setString(s.name,"")
+            val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }
         btnRiwayat.setOnClickListener {
-            val intent = Intent(activity,RiwayatActivity::class.java)
-            startActivity(intent)
+            if (s.getStatusLogin()){
+                val intent = Intent(activity,HistoryActivity::class.java)
+                startActivity(intent)
+            }else{
+               startActivity(Intent(requireActivity(),CustomerActivity::class.java))
+            }
         }
     }
 }

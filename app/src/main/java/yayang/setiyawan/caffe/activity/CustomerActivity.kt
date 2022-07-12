@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import cn.pedant.SweetAlert.SweetAlertDialog
 import kotlinx.android.synthetic.main.activity_customer.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,15 @@ class CustomerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_customer)
         s = SharedPref(this)
         btnLogin.setOnClickListener {
-            customer()
+            val customer = et_email.text.toString().trim()
+            if (customer.isNotEmpty()){
+                customer()
+            }else{
+                SweetAlertDialog(this,SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("from harus di isi")
+                    .show()
+//                Toast.makeText(this, "form harus di isi", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     fun customer(){
