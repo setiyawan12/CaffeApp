@@ -111,7 +111,6 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
         pDialog.setCancelable(false)
         pDialog.show()
     }
-
     private fun bayar(){
         val listProduk = myDb.daoKeranjang().getAll() as ArrayList
         var totalItem = 0

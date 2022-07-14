@@ -1,6 +1,7 @@
 package yayang.setiyawan.caffe.activity
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -24,13 +25,20 @@ class CustomerActivity : AppCompatActivity() {
             val customer = et_email.text.toString().trim()
             if (customer.isNotEmpty()){
                 customer()
+                progres()
             }else{
                 SweetAlertDialog(this,SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("from harus di isi")
                     .show()
-//                Toast.makeText(this, "form harus di isi", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun progres(){
+        val pDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+        pDialog.progressHelper.barColor = Color.parseColor("#A5DC86")
+        pDialog.titleText = "Loading..."
+        pDialog.setCancelable(false)
+        pDialog.show()
     }
     fun customer(){
         UnitApiConfig.instanceRetrofit.customer(et_email.text.toString()).enqueue(object : Callback<ResponModel>{
@@ -43,7 +51,7 @@ class CustomerActivity : AppCompatActivity() {
                         s.setString(s.name,body.data.name)
                         s.setStatusLogin(true)
                         val intent = Intent(this@CustomerActivity,MainActivity::class.java)
-                        Toast.makeText(this@CustomerActivity,"dapat id ${body.data.id}",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CustomerActivity,"Bayar Ulang",Toast.LENGTH_SHORT).show()
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         finish()

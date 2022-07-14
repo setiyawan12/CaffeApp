@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_cash.*
 import kotlinx.android.synthetic.main.fragment_payment.*
+import kotlinx.android.synthetic.main.fragment_payment.tv_empty
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,11 +42,12 @@ class PaymentFragment : Fragment() {
         UnitApiConfig.instanceRetrofit.getRiwayatMidtrans(id).enqueue(object : Callback<ResponModel>{
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val res = response.body()
-                if (res?.success==1){
+                if (res?.success == 200){
                     displayRiwayat(res.transaksis)
+                }else if(res?.success == 0){
+                    tv_empty.visibility = View.VISIBLE
                 }
             }
-
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
                 Helper().alertFailed(requireActivity(),"server error")
             }
