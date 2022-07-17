@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import yayang.setiyawan.caffe.activity.DetailProdukActivity
@@ -53,15 +54,16 @@ class AdapterProduk(var activity: Activity, var data:List<Produk>):RecyclerView.
             .error(R.drawable.product)
             .into(holder.imgProduk)
         holder.layout.setOnClickListener {
-            val stock = data[position].stock
-
-            if (stock > 0){
+            if (cekstock > 0){
                 val activiti = Intent(activity, DetailProdukActivity::class.java)
                 val str = Gson().toJson(data[position],Produk::class.java)
                 activiti.putExtra("extra",str)
                 activity.startActivity(activiti)
             }else{
                 holder.tvHarga.text = "STOCK HABIS"
+                SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Product Sold Out")
+                    .show()
             }
         }
     }

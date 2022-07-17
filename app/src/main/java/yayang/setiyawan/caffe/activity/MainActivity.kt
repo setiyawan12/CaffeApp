@@ -72,15 +72,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_akun->{
                     callFragment(2,fragmentAkun)
-//                    if (s.getStatusLogin()){
-//                        callFragment(2,fragmentAkun)
-//                    }else{
-//                        startActivity(Intent(this,CustomerActivity::class.java))
-//                    }
                 }
             }
             false
-
         }
     }
     private  fun callFragment(int:Int,fragment: Fragment){

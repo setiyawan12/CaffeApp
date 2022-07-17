@@ -21,27 +21,4 @@ interface UnitApiServices {
         @Field("name") name:String
     ):Call<ResponModel>
 
-    @POST("transaksi")
-    fun chekout(
-        @Body data: Chekout
-    ): Call<ResponModel>
-    @POST("payment")
-    fun payment(
-        @Body data: Chekout
-    ): Call<ResponModel>
-
-    @GET("transaksi/customer/{id}")
-    fun getRiwayat(
-        @Path("id") id: String
-    ):Call<ResponModel>
-
-    @GET("transaksi/customer/midtrans/{id}")
-    fun getRiwayatMidtrans(
-        @Path("id") id: String
-    ):Call<ResponModel>
-
-    @GET("transaksi/customer/midtransdetail/{id}")
-    fun getRiwayatTransaction(
-        @Path("id") id: String
-    ):Call<WrappedResponse<Midtrans>>
 }

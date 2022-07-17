@@ -25,19 +25,23 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import yayang.setiyawan.caffe.R
+import yayang.setiyawan.caffe.contract.PembayaranActivityContract
+import yayang.setiyawan.caffe.fragment.HomeFragment
 import yayang.setiyawan.caffe.helper.SharedPref
 import yayang.setiyawan.caffe.model.Chekout
 import yayang.setiyawan.caffe.model.ResponModel
 import yayang.setiyawan.caffe.model.Transaksi
+import yayang.setiyawan.caffe.presenter.PembayaranActivityPresenter
 import yayang.setiyawan.caffe.room.MyDatabase
 import yayang.setiyawan.caffe.unit.Config
 import yayang.setiyawan.caffe.unit.UnitApiConfig
 
-class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
+class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback, PembayaranActivityContract.View {
     lateinit var myDb : MyDatabase
     lateinit var s:SharedPref
     var totalHarga = 0
     val checkout = Chekout()
+    private lateinit var presenter : PembayaranActivityContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pembayaran)
@@ -45,6 +49,8 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
         myDb = MyDatabase.getInstance(this)!!
         mainButton()
         setUpMidtrans()
+        presenter = PembayaranActivityPresenter(this)
+
     }
     private fun setUpMidtrans(){
         SdkUIFlowBuilder.init()
@@ -78,20 +84,20 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
                 totalItem += p.jumlah
                 totalHarga += (p.jumlah * Integer.valueOf(p.harga))
                 val produk = Chekout.Item()
-                produk.id = "" + p.id
-                produk.total_item = ""+p.jumlah
-                produk.total_harga = ""+(p.jumlah * Integer.valueOf(p.harga))
+                produk.id = p.id.toString()
+                produk.total_item = p.jumlah.toString()
+                produk.total_harga = "${(p.jumlah * Integer.valueOf(p.harga))}"
                 produk.catatan = "catatan baru"
                 produks.add(produk)
             }
         }
-
-        checkout.customer_id = ""+s.getString(s.id.toString())
-        checkout.total_item = ""+totalItem
-        checkout.total_harga = ""+totalHarga
-        checkout.name = ""+s.getString(s.name)
-        checkout.meja = ""+s.getString(s.meja)
+        checkout.customer_id = s.getString(s.id.toString())
+        checkout.total_item = totalItem.toString()
+        checkout.total_harga = totalHarga.toString()
+        checkout.name =s.getString(s.name)
+        checkout.meja =s.getString(s.meja)
         checkout.order_id = order_id
+
         checkout.produks = produks
 
         val transactionRequest = TransactionRequest(order_id,totalHarga!!.toDouble())
@@ -102,7 +108,6 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
         transactionRequest.itemDetails = itemDetails
         MidtransSDK.getInstance().transactionRequest = transactionRequest
         MidtransSDK.getInstance().startPaymentUiFlow(this)
-
     }
     private fun progres(){
         val pDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
@@ -120,43 +125,23 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
             if (p.selected){
                 totalItem += p.jumlah
                 totalHarga += (p.jumlah * Integer.valueOf(p.harga))
-
                 val produk = Chekout.Item()
-                produk.id = "" + p.id
-                produk.total_item = ""+p.jumlah
-                produk.total_harga = ""+(p.jumlah * Integer.valueOf(p.harga))
+                produk.id = p.id.toString()
+                produk.total_item = p.jumlah.toString()
+                produk.total_harga = "${(p.jumlah * Integer.valueOf(p.harga))}"
                 produk.catatan = "catatan baru"
                 produks.add(produk)
             }
         }
-        val checkout = Chekout()
-        checkout.customer_id = ""+s.getString(s.id.toString())
-        checkout.total_item = ""+totalItem
-        checkout.total_harga = ""+totalHarga
-        checkout.name = ""+s.getString(s.name)
-        checkout.meja = ""+s.getString(s.meja)
+        checkout.customer_id = s.getString(s.id.toString())
+        checkout.total_item = totalItem.toString()
+        checkout.total_harga = totalHarga.toString()
+        checkout.name =s.getString(s.name)
+        checkout.meja =s.getString(s.meja)
         checkout.produks = produks
-
-        UnitApiConfig.instanceRetrofit.chekout(checkout).enqueue(object : Callback<ResponModel>{
-            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                val respon = response.body()!!
-                if (respon.success == 1){
-                    val jsTransaksi = Gson().toJson(respon.transaksi,Transaksi::class.java)
-                    val jsCheckout = Gson().toJson(checkout,Chekout::class.java)
-                    val intent = Intent(this@PembayaranActivity,SuccessPembayaranActivity::class.java)
-                    intent.putExtra("transaksi",jsTransaksi)
-                    intent.putExtra("checkout",jsCheckout)
-                    startActivity(intent)
-                }else{
-                    Toast.makeText(this@PembayaranActivity,"Gagal",Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-                Toast.makeText(this@PembayaranActivity,"Terjadi kesalahan server",Toast.LENGTH_SHORT).show()
-            }
-
-        })
+        presenter.bayarCash(this, checkout)
     }
+
     private fun uiKitDetails(transactionRequest: TransactionRequest){
         val customerDetails = CustomerDetails()
         customerDetails.customerIdentifier="yayang setiyawan"
@@ -197,23 +182,7 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
                     TransactionResult.STATUS_PENDING -> {
                         Log.e("ENOG", "PENDING : ${p0.response.transactionStatus} | ${p0.response.transactionId}")
                         toast("Payment Pending")
-                                UnitApiConfig.instanceRetrofit.payment(checkout).enqueue(object : Callback<ResponModel>{
-                                    override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                                        val respon = response.body()!!
-                                        if (respon.success == 1){
-                                            val myDb = MyDatabase.getInstance(this@PembayaranActivity)
-                                            for (produk in checkout.produks){
-                                                myDb?.daoKeranjang()?.deleteById(produk.id)
-                                            }
-                                            Toast.makeText(this@PembayaranActivity,"Pembayaran Berhasil",Toast.LENGTH_SHORT).show()
-                                        }else{
-                                            Toast.makeText(this@PembayaranActivity,"Gagal",Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-                                    override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-                                        Toast.makeText(this@PembayaranActivity,"Terjadi kesalahan server",Toast.LENGTH_SHORT).show()
-                                    }
-                                })
+                        presenter.bayarCashless(this,checkout)
                     }
                     TransactionResult.STATUS_FAILED -> {
                         Log.e("ENOG", "FAILED : ${p0.response.transactionStatus} | ${p0.response.statusMessage}")
@@ -237,4 +206,9 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback {
     private fun toast(text: String){
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
+
+    override fun successBayarCash(pindah: Intent) {
+        startActivity(pindah)
+    }
+
 }

@@ -19,15 +19,19 @@ import retrofit2.Callback
 import retrofit2.Response
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.adapter.AdapterDetailHistory
+import yayang.setiyawan.caffe.contract.DetailHistoryTransactionMidtrans
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.model.*
+import yayang.setiyawan.caffe.presenter.DetailTransactionMidtrans
 import yayang.setiyawan.caffe.unit.UnitApiConfig
 
-class DetailTransaksiMidtransActivity : AppCompatActivity() {
+class DetailTransaksiMidtransActivity : AppCompatActivity(),DetailHistoryTransactionMidtrans.view {
+    private lateinit var presenter:DetailHistoryTransactionMidtrans.presenter
     var transaksi = Transaksi()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_transaksi_midtrans)
+        presenter = DetailTransactionMidtrans(this)
         Helper().setToolbar(this, toolbar, "Detail Transaksi")
         val json = intent.getStringExtra("transaksi")
         transaksi = Gson().fromJson(json,Transaksi::class.java)
@@ -57,46 +61,75 @@ class DetailTransaksiMidtransActivity : AppCompatActivity() {
 
     fun getRek(t: Transaksi){
         val id =t.order_id
-        UnitApiConfig.instanceRetrofit.getRiwayatTransaction(id).enqueue(object :Callback<WrappedResponse<Midtrans>>{
-            override fun onResponse(
-                call: Call<WrappedResponse<Midtrans>>,
-                response: Response<WrappedResponse<Midtrans>>
-            ) {
-                val body = response.body()
-                Toast.makeText(this@DetailTransaksiMidtransActivity, body?.data?.transaction_time, Toast.LENGTH_SHORT).show()
-//                print("Hasil"+ body?.data?.va_numbers?.get(0)?.bank)
-                val result = body?.data
-                if (result?.payment_type == "bank_transfer"){
-                    tv_nomerRek.text = result.va_numbers.get(0).va_number
-                    tv_payment_type.text = result.va_numbers.get(0).bank
-                    tv_currency.text = result.currency
-                    tv_status_midtrans.text = result.transaction_status
-                }else if(result?.payment_type == "echannel"){
-                    tv_nomerRek.text = result.bill_key
-                    tv_payment_type.text = result.payment_type
-                    tv_currency.text = result.currency
-                    tv_status_midtrans.text = result.transaction_status
-                }else if(result?.payment_type == "cstore"){
-                    tv_nomerRek.text = result.payment_code
-                    tv_payment_type.text = result.store
-                    tv_currency.text = result.currency
-                    tv_status_midtrans.text = result.transaction_status
-                }else{
-                    tv_nomerRek.text="null"
-                    tv_payment_type.text="null"
-                    tv_status_midtrans.text = "null"
-                    tv_currency.text = "hull"
-                }
-            }
-
-            override fun onFailure(call: Call<WrappedResponse<Midtrans>>, t: Throwable) {
-                Toast.makeText(this@DetailTransaksiMidtransActivity, "Error", Toast.LENGTH_SHORT).show()
-            }
-
-        })
+        presenter.detailMidtrans(id,this)
+//        UnitApiConfig.instanceRetrofit.getRiwayatTransaction(id).enqueue(object :Callback<WrappedResponse<Midtrans>>{
+//            override fun onResponse(
+//                call: Call<WrappedResponse<Midtrans>>,
+//                response: Response<WrappedResponse<Midtrans>>
+//            ) {
+//                val body = response.body()
+//                Toast.makeText(this@DetailTransaksiMidtransActivity, body?.data?.transaction_time, Toast.LENGTH_SHORT).show()
+////                print("Hasil"+ body?.data?.va_numbers?.get(0)?.bank)
+//                val result = body?.data
+//                if (result?.payment_type == "bank_transfer"){
+//                    tv_nomerRek.text = result.va_numbers.get(0).va_number
+//                    tv_payment_type.text = result.va_numbers.get(0).bank
+//                    tv_currency.text = result.currency
+//                    tv_status_midtrans.text = result.transaction_status
+//                }else if(result?.payment_type == "echannel"){
+//                    tv_nomerRek.text = result.bill_key
+//                    tv_payment_type.text = result.payment_type
+//                    tv_currency.text = result.currency
+//                    tv_status_midtrans.text = result.transaction_status
+//                }else if(result?.payment_type == "cstore"){
+//                    tv_nomerRek.text = result.payment_code
+//                    tv_payment_type.text = result.store
+//                    tv_currency.text = result.currency
+//                    tv_status_midtrans.text = result.transaction_status
+//                }else{
+//                    tv_nomerRek.text="null"
+//                    tv_payment_type.text="null"
+//                    tv_status_midtrans.text = "null"
+//                    tv_currency.text = "hull"
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<WrappedResponse<Midtrans>>, t: Throwable) {
+//                Toast.makeText(this@DetailTransaksiMidtransActivity, "Error", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        })
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    override fun success(result: Midtrans) {
+        if (result?.payment_type == "bank_transfer"){
+            tv_nomerRek.text = result.va_numbers.get(0).va_number
+            tv_payment_type.text = result.va_numbers.get(0).bank
+            tv_currency.text = result.currency
+            tv_status_midtrans.text = result.transaction_status
+        }else if(result?.payment_type == "echannel"){
+            tv_nomerRek.text = result.bill_key
+            tv_payment_type.text = result.payment_type
+            tv_currency.text = result.currency
+            tv_status_midtrans.text = result.transaction_status
+        }else if(result?.payment_type == "cstore"){
+            tv_nomerRek.text = result.payment_code
+            tv_payment_type.text = result.store
+            tv_currency.text = result.currency
+            tv_status_midtrans.text = result.transaction_status
+        }else{
+            tv_nomerRek.text="null"
+            tv_payment_type.text="null"
+            tv_status_midtrans.text = "null"
+            tv_currency.text = "hull"
+        }
+    }
+
+    override fun toast(message: String) {
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
     }
 }

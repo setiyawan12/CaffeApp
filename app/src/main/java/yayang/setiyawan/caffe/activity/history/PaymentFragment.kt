@@ -2,6 +2,7 @@ package yayang.setiyawan.caffe.activity.history
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,47 +19,38 @@ import retrofit2.Response
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.activity.history.detail.DetailTransaksiMidtransActivity
 import yayang.setiyawan.caffe.adapter.AdapterHistory
+import yayang.setiyawan.caffe.contract.HistoryPaymentFragmentContract
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.helper.SharedPref
 import yayang.setiyawan.caffe.model.ResponModel
 import yayang.setiyawan.caffe.model.Transaksi
+import yayang.setiyawan.caffe.presenter.PaymentFragmentPresenter
 import yayang.setiyawan.caffe.unit.UnitApiConfig
+import kotlin.math.log
 
-class PaymentFragment : Fragment() {
+class PaymentFragment : Fragment(),HistoryPaymentFragmentContract.view {
+    private lateinit var presenter:HistoryPaymentFragmentContract.presenter
     lateinit var s:SharedPref
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view:View = inflater.inflate(R.layout.fragment_payment, container, false)
-        init(view)
         s = SharedPref(requireActivity())
+        presenter = PaymentFragmentPresenter(this)
         getRiwayat()
         return view
     }
-
     fun getRiwayat(){
         val id = s.getString(s.id.toString())
-        UnitApiConfig.instanceRetrofit.getRiwayatMidtrans(id).enqueue(object : Callback<ResponModel>{
-            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                val res = response.body()
-                if (res?.success == 200){
-                    displayRiwayat(res.transaksis)
-                }else if(res?.success == 0){
-                    tv_empty.visibility = View.VISIBLE
-                }
-            }
-            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-                Helper().alertFailed(requireActivity(),"server error")
-            }
-
-        })
+        presenter.getPayment(id)
     }
+    override fun attachtoRecyle(data: ArrayList<Transaksi>) {
+        Log.d("Transaksis",data.toString())
 
-    fun displayRiwayat(transaksis:ArrayList<Transaksi>){
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_payment?.adapter = AdapterHistory(transaksis,object : AdapterHistory.Listeners{
+        rv_payment?.adapter = AdapterHistory(data,object : AdapterHistory.Listeners{
             override fun onClicked(data: Transaksi) {
                 val json = Gson().toJson(data,Transaksi::class.java)
                 val intent = Intent(requireActivity(), DetailTransaksiMidtransActivity::class.java)
@@ -68,9 +60,12 @@ class PaymentFragment : Fragment() {
         })
         rv_payment?.layoutManager = layoutManager
     }
+    override fun emptyData() {
+      tv_empty.visibility = View.VISIBLE
+    }
 
-    private fun init(view: View){
-
+    override fun toast(message: String) {
+        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {

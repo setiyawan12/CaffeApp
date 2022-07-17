@@ -1,10 +1,7 @@
 package yayang.setiyawan.caffe.app
 
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import yayang.setiyawan.caffe.model.*
 
 interface ApiServices {
@@ -18,6 +15,28 @@ interface ApiServices {
     fun getProdukDrink():Call<ListResponse<Produk>>
     @GET("api/produk/4")
     fun getProdukCoffe():Call<ListResponse<Produk>>
+
+    @POST("api/transaksi")
+    fun chekout(
+        @Body data: Chekout
+    ): Call<ResponModel>
+    @POST("api/payment")
+    fun checkoutcashless(
+        @Body data: Chekout
+    ): Call<ResponModel>
+
+    @GET("api/transaksi/customer/{id}")
+    fun getRiwayat(
+        @Path("id") id: String
+    ):Call<ResponModel>
+    @GET("api/transaksi/customer/midtrans/{id}")
+    fun getRiwayatMidtrans(
+        @Path("id") id: String
+    ):Call<ResponModel>
+    @GET("api/transaksi/customer/midtransdetail/{id}")
+    fun getRiwayatTransaction(
+        @Path("id") id: String
+    ):Call<WrappedResponse<Midtrans>>
 //    @FormUrlEncoded
 //    @POST("api/login")
 //    fun login(
