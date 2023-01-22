@@ -25,6 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import yayang.setiyawan.caffe.R
+import yayang.setiyawan.caffe.app.Constant
 import yayang.setiyawan.caffe.contract.PembayaranActivityContract
 import yayang.setiyawan.caffe.fragment.HomeFragment
 import yayang.setiyawan.caffe.helper.SharedPref
@@ -95,11 +96,9 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback, Pem
         checkout.total_item = totalItem.toString()
         checkout.total_harga = totalHarga.toString()
         checkout.name =s.getString(s.name)
-        checkout.meja =s.getString(s.meja)
+        checkout.meja =Constant.getIdMeja(this).toString()
         checkout.order_id = order_id
-
         checkout.produks = produks
-
         val transactionRequest = TransactionRequest(order_id,totalHarga!!.toDouble())
         val detail = ItemDetails(System.currentTimeMillis().toString(),totalHarga.toDouble(),1.toInt(),"JATINAN")
         val itemDetails = ArrayList<ItemDetails>()
@@ -133,15 +132,15 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback, Pem
                 produks.add(produk)
             }
         }
+        val idMeja = Constant.getIdMeja(this)
         checkout.customer_id = s.getString(s.id.toString())
         checkout.total_item = totalItem.toString()
         checkout.total_harga = totalHarga.toString()
         checkout.name =s.getString(s.name)
-        checkout.meja =s.getString(s.meja)
+        checkout.meja =idMeja.toString()
         checkout.produks = produks
         presenter.bayarCash(this, checkout)
     }
-
     private fun uiKitDetails(transactionRequest: TransactionRequest){
         val customerDetails = CustomerDetails()
         customerDetails.customerIdentifier="yayang setiyawan"
@@ -166,14 +165,12 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback, Pem
         billingAddress.city="tegal"
         billingAddress.postalCode="123456"
         billingAddress.countryCode="IDN"
-
         customerDetails.billingAddress = billingAddress
         transactionRequest.customerDetails = customerDetails
     }
     override fun onTransactionFinished(p0: TransactionResult?) {
         when {
             p0?.response != null -> {
-
                 when(p0.status){
                     TransactionResult.STATUS_SUCCESS -> {
                         Log.e("ENOG", "DONE : ${p0.response.transactionStatus} | ${p0.response.transactionId}")
@@ -206,9 +203,7 @@ class PembayaranActivity : AppCompatActivity(), TransactionFinishedCallback, Pem
     private fun toast(text: String){
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
-
     override fun successBayarCash(pindah: Intent) {
         startActivity(pindah)
     }
-
 }

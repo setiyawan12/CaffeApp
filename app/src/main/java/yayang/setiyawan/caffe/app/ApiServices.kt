@@ -37,10 +37,8 @@ interface ApiServices {
     fun getRiwayatTransaction(
         @Path("id") id: String
     ):Call<WrappedResponse<Midtrans>>
-//    @FormUrlEncoded
-//    @POST("api/login")
-//    fun login(
-//        @Field("email") email: String,
-//        @Field("password")password: String,
-//    ):Call<WrappedResponse<User>>
+    @GET("meja/{id}")
+    fun getMeja(
+        @Path("id") id: String
+    ):Call<ResponModel>
 }

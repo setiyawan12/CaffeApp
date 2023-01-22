@@ -67,7 +67,6 @@ class AdapterKeranjang (var activity: Activity, var data: ArrayList<Produk>, var
             jumlah++
             produk.jumlah = jumlah
             update(produk)
-
             holder.tvJumlah.text = jumlah.toString()
             holder.tvHarga.text = Helper().gantiRupiah(harga * jumlah)
         }

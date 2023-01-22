@@ -15,6 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Caffe">
         <activity
+            android:name=".activity.PositionActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.MejaActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true" />
         <activity
@@ -33,8 +47,14 @@
             android:name=".activity.RiwayatActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ScannerActivity"
-            android:exported="true" />
+            android:name=".activity.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.GetUserActivity"
             android:exported="true" />
@@ -72,14 +92,8 @@
             android:name=".activity.DetailProdukActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activity.ScannerActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

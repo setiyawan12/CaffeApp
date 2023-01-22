@@ -27,12 +27,10 @@ class AdapterFood (var activity: Activity,var data:List<Produk>):RecyclerView.Ad
         val imgProduk = view.findViewById<ImageView>(R.id.img_produk)
         val layout = view.findViewById<View>(R.id.layout)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
         return Holder(view)
     }
-
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val image = data[position].image
         val name = data[position].name

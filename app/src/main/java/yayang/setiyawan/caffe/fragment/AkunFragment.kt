@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import kotlinx.android.synthetic.main.fragment_akun.*
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.activity.CustomerActivity
 import yayang.setiyawan.caffe.activity.MainActivity
 import yayang.setiyawan.caffe.activity.RiwayatActivity
 import yayang.setiyawan.caffe.activity.TestLoginActivity
 import yayang.setiyawan.caffe.activity.history.HistoryActivity
+import yayang.setiyawan.caffe.app.Constant
 import yayang.setiyawan.caffe.helper.SharedPref
 
 class AkunFragment : Fragment(){
@@ -42,6 +45,8 @@ class AkunFragment : Fragment(){
 //            startActivity(intent)
 //            return
 //        }
+//        val id = Constant.getIdMeja(requireContext())
+//        Toast.makeText(requireActivity(), id.toString(), Toast.LENGTH_SHORT).show()
         tvNama.text = s.getString(s.name)
     }
     private fun init(view: View){

@@ -62,7 +62,6 @@ class PembayaranActivityPresenter(v: PembayaranActivityContract.View): Pembayara
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
                 Toast.makeText(context, "Terjadi kesalahan server", Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 }

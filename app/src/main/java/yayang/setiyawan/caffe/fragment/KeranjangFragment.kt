@@ -23,10 +23,7 @@ import yayang.setiyawan.caffe.adapter.AdapterKeranjang
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.model.Produk
 import yayang.setiyawan.caffe.R
-import yayang.setiyawan.caffe.activity.CustomerActivity
-import yayang.setiyawan.caffe.activity.LoginActivity
-import yayang.setiyawan.caffe.activity.PembayaranActivity
-import yayang.setiyawan.caffe.activity.TestLoginActivity
+import yayang.setiyawan.caffe.activity.*
 import yayang.setiyawan.caffe.helper.SharedPref
 import yayang.setiyawan.caffe.room.MyDatabase
 
@@ -50,7 +47,6 @@ class KeranjangFragment : Fragment() {
         listProduk = myDb.daoKeranjang().getAll() as ArrayList
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-
         adapter = AdapterKeranjang(requireActivity(), listProduk, object : AdapterKeranjang.Listeners {
             override fun onUpdate() {
                 hitungTotal()
@@ -90,7 +86,7 @@ class KeranjangFragment : Fragment() {
                     if (p.selected) isThereProduk = true
                 }
                 if (isThereProduk){
-                    val intent = Intent(requireActivity(),PembayaranActivity::class.java)
+                    val intent = Intent(requireActivity(),PositionActivity::class.java)
                     intent.putExtra("extra",""+totalHarga)
                     startActivity(intent)
                 }else{

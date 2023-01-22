@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
@@ -16,16 +17,26 @@ import com.budiyev.android.codescanner.ScanMode
 import kotlinx.android.synthetic.main.activity_scanner.*
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import yayang.setiyawan.caffe.helper.SharedPref
 import yayang.setiyawan.caffe.R
+import yayang.setiyawan.caffe.app.ApiServices
+import yayang.setiyawan.caffe.contract.GetMejaActivityContract
+import yayang.setiyawan.caffe.model.ResponModel
+import yayang.setiyawan.caffe.presenter.MejaActivityPresenter
+import yayang.setiyawan.caffe.unit.UnitApiConfig
 
-class ScannerActivity : AppCompatActivity() {
+class ScannerActivity : AppCompatActivity(),GetMejaActivityContract.GetMejaActivityView {
+    private lateinit var presenter:GetMejaActivityContract.GetMejaPresenter
     lateinit var sharedPref: SharedPref
     private lateinit var codeScanner: CodeScanner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
         sharedPref = SharedPref(this)
+        presenter = MejaActivityPresenter(this)
         setupPermissions()
         codeScanner()
     }
@@ -35,7 +46,7 @@ class ScannerActivity : AppCompatActivity() {
             camera = CodeScanner.CAMERA_BACK
             formats = CodeScanner.ALL_FORMATS
             autoFocusMode = AutoFocusMode.SAFE
-            scanMode = ScanMode.CONTINUOUS
+            scanMode = ScanMode.SINGLE
             isAutoFocusEnabled = true
             isFlashEnabled = false
             decodeCallback = DecodeCallback {
@@ -45,9 +56,8 @@ class ScannerActivity : AppCompatActivity() {
                     }else{
                         try {
                             val obj = JSONObject(it.text)
-                            sharedPref.setString(sharedPref.meja,obj.getString("meja"))
-                            Toast.makeText(this@ScannerActivity,obj.getString("meja"),Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@ScannerActivity, MainActivity::class.java))
+                            val getNo = obj.getString("meja")
+                            presenter.meja(getNo,this@ScannerActivity)
                         }catch (e: JSONException){
                             e.printStackTrace()
                         }
@@ -64,6 +74,7 @@ class ScannerActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         codeScanner.startPreview()
@@ -111,4 +122,20 @@ class ScannerActivity : AppCompatActivity() {
         private const val CAMERA_REQ = 101
     }
 
+    override fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun successMeja() {
+        startActivity(Intent(this,PembayaranActivity::class.java))
+    }
+
+    override fun showLoading() {
+        SweetAlertDialog(this@ScannerActivity,SweetAlertDialog.ERROR_TYPE)
+            .setTitleText("Meja Sedang Di Guanakan")
+            .show()
+    }
+
+    override fun hideLoading() {
+    }
 }

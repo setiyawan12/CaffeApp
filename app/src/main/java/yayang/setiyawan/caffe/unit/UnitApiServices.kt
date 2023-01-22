@@ -2,10 +2,7 @@ package yayang.setiyawan.caffe.unit
 
 import retrofit2.Call
 import retrofit2.http.*
-import yayang.setiyawan.caffe.model.Chekout
-import yayang.setiyawan.caffe.model.Midtrans
-import yayang.setiyawan.caffe.model.ResponModel
-import yayang.setiyawan.caffe.model.WrappedResponse
+import yayang.setiyawan.caffe.model.*
 
 interface UnitApiServices {
     @FormUrlEncoded
@@ -14,11 +11,17 @@ interface UnitApiServices {
         @Field("email") email: String,
         @Field("password")password: String,
     ): Call<ResponModel>
-
     @FormUrlEncoded
     @POST("customer")
     fun customer(
         @Field("name") name:String
     ):Call<ResponModel>
 
+    @GET("meja")
+    fun Allmeja():Call<ListResponse<Meja>>
+
+    @GET("meja/{id}")
+    fun getMejas(
+        @Path("id") id: String
+    ):Call<WrappedResponseMeja<Meja>>
 }

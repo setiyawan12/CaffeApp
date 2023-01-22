@@ -13,6 +13,7 @@ import retrofit2.Response
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.activity.history.detail.DetailTransaksiActivity
 import yayang.setiyawan.caffe.adapter.AdapterHistory
+import yayang.setiyawan.caffe.app.ApiServices
 import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.helper.SharedPref
 import yayang.setiyawan.caffe.model.ResponModel
@@ -27,36 +28,37 @@ class RiwayatActivity : AppCompatActivity() {
         Helper().setToolbar(this, toolbar, "History")
         s = SharedPref(this)
     }
-    fun getRiwayat(){
-        val id =s.getString(s.id.toString())
-        UnitApiConfig.instanceRetrofit.getRiwayat(id).enqueue(object : Callback<ResponModel>{
-            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                val res = response.body()
-                if (res?.success == 1){
-                    displayRiwayat(res.transaksis)
-                }
-            }
-            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-            }
-
-        })
-    }
-
-    fun displayRiwayat(transaksis: ArrayList<Transaksi>) {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_riwayat.adapter = AdapterHistory(transaksis, object : AdapterHistory.Listeners{
-            override fun onClicked(data: Transaksi) {
-                val json = Gson().toJson(data,Transaksi::class.java)
-                val intent = Intent(this@RiwayatActivity, DetailTransaksiActivity::class.java)
-                intent.putExtra("transaksi",json)
-                startActivity(intent)
-            }
-        })
-        rv_riwayat.layoutManager = layoutManager
-    }
+//    fun getRiwayat(){
+//        val id =s.getString(s.id.toString())
+//        ApiServices.getRiwayat(id).enqueue(object : Callback<ResponModel>{
+//            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
+//                val res = response.body()
+//                if (res?.success == 1){
+//                    displayRiwayat(res.transaksis)
+//                }
+//            }
+//            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
+//            }
+//
+//        })
+//    }
+//
+//    fun displayRiwayat(transaksis: ArrayList<Transaksi>) {
+//        val layoutManager = LinearLayoutManager(this)
+//        layoutManager.orientation = LinearLayoutManager.VERTICAL
+//        rv_riwayat.adapter = AdapterHistory(transaksis, object : AdapterHistory.Listeners{
+//            override fun onClicked(data: Transaksi) {
+//                val json = Gson().toJson(data,Transaksi::class.java)
+//                val intent = Intent(this@RiwayatActivity, DetailTransaksiActivity::class.java)
+//                intent.putExtra("transaksi",json)
+//                startActivity(intent)
+//            }
+//        })
+//        rv_riwayat.layoutManager = layoutManager
+//    }
     override fun onResume() {
-        getRiwayat()
+//        getRiwayat()
+//        displayRiwayat(transaksis )
         super.onResume()
     }
 }

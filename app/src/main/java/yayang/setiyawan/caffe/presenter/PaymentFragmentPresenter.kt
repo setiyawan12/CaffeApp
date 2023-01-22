@@ -13,7 +13,6 @@ class PaymentFragmentPresenter(v:HistoryPaymentFragmentContract.view):HistoryPay
     override fun getPayment(id: String) {
         val webservices = ApiConfig.APIService()
         val request = webservices.getRiwayatMidtrans(id)
-
         request.enqueue(object : Callback<ResponModel>{
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val res = response.body()
@@ -27,7 +26,6 @@ class PaymentFragmentPresenter(v:HistoryPaymentFragmentContract.view):HistoryPay
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
                 view?.toast("Terjadi Kesalahan Server")
             }
-
         })
     }
 }

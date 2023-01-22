@@ -36,7 +36,6 @@ class CoffeActivity : AppCompatActivity(),ProductCoffeContract.View {
             layoutManager = linearLayoutManager
         }
     }
-
     override fun emptydata(status: Boolean) {
         if (status){
             tv_empty?.visibility= View.VISIBLE

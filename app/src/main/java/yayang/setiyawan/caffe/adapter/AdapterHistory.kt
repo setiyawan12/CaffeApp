@@ -22,13 +22,11 @@ class AdapterHistory(var data:ArrayList<Transaksi>,var listener:Listeners):Recyc
         val layout = view.findViewById<CardView>(R.id.layout)
     }
     lateinit var context: Context
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):Holder {
         context = parent.context
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_history,parent,false)
         return Holder(view)
     }
-
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val a = data[position]
         val name = a.details[0].produk.name
@@ -46,7 +44,6 @@ class AdapterHistory(var data:ArrayList<Transaksi>,var listener:Listeners):Recyc
             listener.onClicked(a)
         }
     }
-
     override fun getItemCount(): Int {
         return data.size
     }

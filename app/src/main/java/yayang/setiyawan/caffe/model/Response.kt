@@ -12,3 +12,9 @@ data class WrappedResponse<T>(
     @SerializedName("message") var message : String,
     @SerializedName("data") var data : T
 )
+
+data class WrappedResponseMeja<T>(
+    @SerializedName("success") var success : Int,
+    @SerializedName("message") var message : String,
+    @SerializedName("data") var data : T
+)
