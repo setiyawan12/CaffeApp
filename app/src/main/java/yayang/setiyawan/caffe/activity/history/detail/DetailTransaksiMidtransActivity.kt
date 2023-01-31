@@ -6,17 +6,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_detail_transaksi.*
-import kotlinx.android.synthetic.main.activity_detail_transaksi.div_footer
 import kotlinx.android.synthetic.main.activity_detail_transaksi.rv_produk
 import kotlinx.android.synthetic.main.activity_detail_transaksi.tv_status
 import kotlinx.android.synthetic.main.activity_detail_transaksi.tv_tgl
-import kotlinx.android.synthetic.main.activity_detail_transaksi.tv_totalBelanja
 import kotlinx.android.synthetic.main.activity_detail_transaksi_midtrans.*
 import kotlinx.android.synthetic.main.toolbar.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.adapter.AdapterDetailHistory
 import yayang.setiyawan.caffe.contract.DetailHistoryTransactionMidtrans

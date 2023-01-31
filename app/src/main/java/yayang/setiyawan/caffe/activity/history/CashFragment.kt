@@ -2,28 +2,23 @@ package yayang.setiyawan.caffe.activity.history
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_cash.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import yayang.setiyawan.caffe.R
 import yayang.setiyawan.caffe.activity.history.detail.DetailTransaksiActivity
 import yayang.setiyawan.caffe.adapter.AdapterHistory
 import yayang.setiyawan.caffe.contract.HistoryCashFragmentContract
-import yayang.setiyawan.caffe.helper.Helper
 import yayang.setiyawan.caffe.helper.SharedPref
-import yayang.setiyawan.caffe.model.ResponModel
 import yayang.setiyawan.caffe.model.Transaksi
 import yayang.setiyawan.caffe.presenter.CashFragmentPresenter
-import yayang.setiyawan.caffe.unit.UnitApiConfig
 
 class CashFragment : Fragment(),HistoryCashFragmentContract.view {
     lateinit var presenter:HistoryCashFragmentContract.presenter
@@ -69,13 +64,17 @@ class CashFragment : Fragment(),HistoryCashFragmentContract.view {
         })
         rv_cash?.layoutManager = layoutManager
     }
-
     private fun init(view: View){
         val rv_cash = view.findViewById<RecyclerView>(R.id.rv_cash)
     }
 
     override fun onResume() {
         super.onResume()
+        getRiwayat()
+    }
+
+    override fun onStart() {
+        super.onStart()
         getRiwayat()
     }
 

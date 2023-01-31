@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Caffe">
         <activity
+            android:name=".activity.ExampleActivity"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.OutsidePaymentActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.PositionActivity"
             android:exported="false">
             <meta-data
@@ -93,7 +108,7 @@
             android:exported="true" />
         <activity
             android:name=".activity.ScannerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

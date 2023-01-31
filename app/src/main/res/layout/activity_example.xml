@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.history.detail.DetailTransaksiActivity">
+    tools:context=".activity.ExampleActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,14 +63,12 @@
             android:layout_gravity="center|top"
             />
         <ScrollView
-            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="horizontal"
             android:scrollbarSize="@dimen/_1sdp"
             >
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
@@ -119,7 +118,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/tv_kode_trx"
+                                android:id="@+id/tv_kode_payment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="10dp"
@@ -137,7 +136,7 @@
                                 app:srcCompat="@drawable/ic_baseline_content_copy_24" />
                         </LinearLayout>
                         <TextView
-                            android:id="@+id/tv_nama"
+                            android:id="@+id/tv_statusDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -191,46 +190,13 @@
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:id="@+id/tv_kode_payment"
+                                    android:id="@+id/tv_payment"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_weight="1.5"
                                     android:fontFamily="@font/poppins_bold"
                                     android:text="INV/PYM/2022-09-28/968"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingBottom="2dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:text="payment_method"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/tv_payment_method"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_weight="1.5"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:text="Cash"
                                     android:textAllCaps="true"
                                     android:textColor="@color/white"
                                     android:textSize="11sp" />
@@ -372,31 +338,29 @@
                 </androidx.cardview.widget.CardView>
 
                 <Button
-                    android:id="@+id/btnScanQr"
+                    android:id="@+id/btnYes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Show Qr"
-                    android:visibility="gone"
+                    android:text="yes"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardView2"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2"
                     />
                 <Button
-                    android:id="@+id/btnBatal"
+                    android:id="@+id/btnNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Batal Pesanan"
-                    android:backgroundTint="@color/red"
-                    android:visibility="gone"
+                    android:text="no"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardView2"
+                    app:layout_constraintTop_toBottomOf="@+id/btnYes"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </FrameLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

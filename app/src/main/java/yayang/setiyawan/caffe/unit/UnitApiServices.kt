@@ -24,4 +24,8 @@ interface UnitApiServices {
     fun getMejas(
         @Path("id") id: String
     ):Call<WrappedResponseMeja<Meja>>
+    @POST("chekout/batal/{id}")
+    fun cancleTransaction(
+        @Path("id")id:String
+    ):Call<ResponModel>
 }

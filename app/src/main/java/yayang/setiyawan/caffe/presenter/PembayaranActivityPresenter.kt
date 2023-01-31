@@ -49,10 +49,10 @@ class PembayaranActivityPresenter(v: PembayaranActivityContract.View): Pembayara
                 val respon = response.body()!!
                 Log.d("MIDTRANS",respon.data.toString())
                 if (respon.success == 1){
-                    val myDb = MyDatabase.getInstance(context)
-                    for (produk in body.produks){
-                        myDb?.daoKeranjang()?.deleteById(produk.id)
-                    }
+//                    val myDb = MyDatabase.getInstance(context)
+//                    for (produk in body.produks){
+//                        myDb?.daoKeranjang()?.deleteById(produk.id)
+//                    }
                     Toast.makeText(context,"Pembayaran Berhasil",Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(context,"Gagal",Toast.LENGTH_SHORT).show()

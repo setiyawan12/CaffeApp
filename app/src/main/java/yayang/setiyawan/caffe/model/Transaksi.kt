@@ -6,6 +6,8 @@ class Transaksi {
     var total_harga = ""
     var total_item = ""
     var kode_payment = ""
+    var payment_method = ""
+    var kode_trx =""
     var kode_unik = 0
     var status = ""
     var meja =""

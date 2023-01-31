@@ -23,13 +23,10 @@ class MejaActivity : AppCompatActivity(),GetMejaActivityContract.AllMejaActivity
     }
     override fun attachToRecycler(listMeja: List<Meja>) {
         recyclerView.apply {
-            adapterMeja = AdapterMeja(listMeja)
+            adapterMeja = AdapterMeja(this@MejaActivity,listMeja)
             adapter=adapterMeja
             val gridLayout = GridLayoutManager(this@MejaActivity,2)
             layoutManager = gridLayout
-//            val linearLayoutManager = LinearLayoutManager(this@MejaActivity)
-//            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//            layoutManager = linearLayoutManager
         }
     }
     override fun showToast(message: String) {
